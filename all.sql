@@ -1,5 +1,33 @@
 CREATE SCHEMA tec;
 
+
+
+CREATE TABLE tec."error" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	"name" varchar NOT NULL,
+	"description" text NOT NULL,
+	"status" varchar NOT NULL
+);
+
+/** Column comments*/
+COMMENT ON COLUMN tec.error.id IS 'первичный ключ';
+COMMENT ON COLUMN tec.error."name" IS 'Заголовок ошибки';
+COMMENT ON COLUMN tec.error.description IS 'Подробное описание ошибки';
+COMMENT ON COLUMN tec.error.status IS 'Код статуса ошибки';
+/** Column comments*/
+
+/** Fucntion */
+/** Fucntion GET  */
+CREATE OR REPLACE FUNCTION tec.error_get_id(_id int)
+	RETURNS SETOF "tec"."error"
+	LANGUAGE plpgsql
+AS $function$
+	BEGIN
+		return query select * from tec.error where id = _id;
+	END;
+$function$;
+
+
 CREATE TABLE tec."event" (
 	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	"name" varchar NOT NULL,

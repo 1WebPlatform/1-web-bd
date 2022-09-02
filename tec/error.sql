@@ -1,0 +1,38 @@
+CREATE TABLE tec."error" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	"name" varchar NOT NULL,
+	"description" text NOT NULL,
+	"status" varchar NOT NULL
+);
+
+/** Column comments*/
+COMMENT ON COLUMN tec.error.id IS 'первичный ключ';
+COMMENT ON COLUMN tec.error."name" IS 'Заголовок ошибки';
+COMMENT ON COLUMN tec.error.description IS 'Подробное описание ошибки';
+COMMENT ON COLUMN tec.error.status IS 'Код статуса ошибки';
+/** Column comments*/
+
+/** Fucntion */
+/** Fucntion GET  */
+CREATE OR REPLACE FUNCTION tec.error_get_id(_id int)
+	RETURNS SETOF "tec"."error"
+	LANGUAGE plpgsql
+AS $function$
+	BEGIN
+		return query select * from tec.error where id = _id;
+	END;
+$function$;
+/** Fucntion */
+/** Fucntion GET  */
+
+
+/** DATA bd */
+INSERT INTO "tec"."error" ("name", "description", "status") VALUES
+    ('Ошибка уникальности', 'Указанное имя события уже занято', '400'),
+	('Запись не найдена', 'Указанный id события не существует', '404');
+/** DATA bd */
+
+
+/** Start Fucntion */
+select * from tec.error_get_id(_id := 1)
+/** Start Fucntion */

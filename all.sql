@@ -26,9 +26,25 @@ AS $function$
 		return query select * from tec.error where id = _id;
 	END;
 $function$;
+/** Fucntion */
+/** Fucntion GET  */
 
 
-CREATE TABLE tec."event" (
+/** DATA bd */
+INSERT INTO "tec"."error" ("name", "description", "status") VALUES
+    ('Ошибка уникальности', 'Указанное имя события уже занято', '400'),
+	('Запись не найдена', 'Указанный id события не существует', '404');
+/** DATA bd */
+
+
+/** Start Fucntion */
+select * from tec.error_get_id(_id := 1);
+/** Start Fucntion */
+
+
+
+
+ CREATE TABLE tec."event" (
 	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	"name" varchar NOT NULL,
 	description text NULL,
@@ -73,7 +89,7 @@ CREATE OR REPLACE FUNCTION tec.event_check_id(_id int)
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN
-		return EXISTS (select * from tec.event where id = _id);
+		return EXISTS (select * from tec.event where "id" = _id);
 	END;
 $function$;
 
@@ -92,7 +108,8 @@ CREATE OR REPLACE FUNCTION tec.event_save(
 	_name varchar,
 	_description text DEFAULT NULL::character varying,
 	_active boolean DEFAULT true,
-	OUT id_res int
+	OUT id_ int,
+	OUT error tec.error
 )
 	LANGUAGE plpgsql
 AS $function$
@@ -101,20 +118,23 @@ AS $function$
 			INSERT INTO tec.event 
 				("name", description, active) 
 				VALUES (_name, _description,_active) 
-				RETURNING id INTO id_res;
+				RETURNING id INTO id_;
+		ELSE 
+			select * into error from tec.error_get_id(1);		
 		END IF;		
 	END;
 $function$;
 /** Fucntion SAVE  */
 
 /** Fucntion DELETE  */
-CREATE OR REPLACE FUNCTION tec.event_delete_id(_id int)
-	RETURNS void
+CREATE OR REPLACE FUNCTION tec.event_delete_id(_id int, OUT error tec.error, OUT id_ int)
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN
-		IF (select * from tec.event_check_id(_id)) <> true then
-			DELETE FROM "tec"."event" where id = _id;
+		IF (select * from tec.event_check_id(_id)) then
+			DELETE FROM tec.event where id = _id RETURNING id INTO id_;
+		ELSE 
+			select * into error from tec.error_get_id(2);
 		END IF;
 	END;
 $function$;

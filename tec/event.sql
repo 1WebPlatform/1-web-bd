@@ -16,7 +16,8 @@ COMMENT ON COLUMN tec.event.active IS 'Активность события';
 /** Column comments*/
 
 /** Fucntion */
-CREATE OR REPLACE FUNCTION tec.get_event()
+/** Fucntion GET  */
+CREATE OR REPLACE FUNCTION tec.event_get()
 	RETURNS SETOF "tec"."event"
 	LANGUAGE plpgsql
 AS $function$
@@ -25,7 +26,39 @@ AS $function$
 	END;
 $function$;
 
-CREATE OR REPLACE FUNCTION tec.save_event(
+
+CREATE OR REPLACE FUNCTION tec.event_get_id(_id int)
+	RETURNS SETOF "tec"."event"
+	LANGUAGE plpgsql
+AS $function$
+	BEGIN
+		return query select * from tec.event where id = _id;
+	END;
+$function$;
+/** Fucntion GET  */
+
+/** Fucntion CHECK  */
+CREATE OR REPLACE FUNCTION tec.event_check_id(_id int)
+	RETURNS boolean
+	LANGUAGE plpgsql
+AS $function$
+	BEGIN
+		return EXISTS (select * from tec.event where id = _id);
+	END;
+$function$;
+
+CREATE OR REPLACE FUNCTION tec.event_check_name(_name varchar)
+	RETURNS boolean
+	LANGUAGE plpgsql
+AS $function$
+	BEGIN
+		return EXISTS (select * from tec.event where "name" = _name);
+	END;
+$function$;
+/** Fucntion CHECK  */
+
+/** Fucntion SAVE  */
+CREATE OR REPLACE FUNCTION tec.event_save(
 	_name varchar,
 	_description text DEFAULT NULL::character varying,
 	_active boolean DEFAULT true,
@@ -34,15 +67,36 @@ CREATE OR REPLACE FUNCTION tec.save_event(
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN
-		INSERT INTO tec.event 
-			("name", description, active) 
-			VALUES (_name, _description,_active) 
-			RETURNING id INTO id_res;
+		IF (select * from tec.event_check_name(_name)) <> true then
+			INSERT INTO tec.event 
+				("name", description, active) 
+				VALUES (_name, _description,_active) 
+				RETURNING id INTO id_res;
+		END IF;		
 	END;
 $function$;
+/** Fucntion SAVE  */
+
+/** Fucntion DELETE  */
+CREATE OR REPLACE FUNCTION tec.event_delete_id(_id int)
+	RETURNS void
+	LANGUAGE plpgsql
+AS $function$
+	BEGIN
+		IF (select * from tec.event_check_id(_id)) <> true then
+			DELETE FROM "tec"."event" where id = _id;
+		END IF;
+	END;
+$function$;
+/** Fucntion DELETE  */
+
 /** Fucntion */
 
 /** Start Fucntion */
-select * from tec.save_event(_name:='test',_description:='test', _active:=false );
-select * from tec.get_event();
+select * from tec.event_save(_name := 'test',_description := 'test', _active := false );
+select * from tec.event_get();
+select * from tec.event_get_id(_id := 1);
+select * from tec.event_check_id(_id := 1);
+select * from tec.event_check_name(_name := 'test');
+select * from tec.event_delete_id(_id := 1);
 /** Start Fucntion */

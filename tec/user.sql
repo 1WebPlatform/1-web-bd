@@ -45,7 +45,7 @@ CREATE OR REPLACE FUNCTION tec.user_get(
     _where varchar DEFAULT NULL::integer,
     _order_by varchar DEFAULT NULL::integer
 )
-	RETURNS SETOF type_user_get
+	RETURNS SETOF tec.type_user_get
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN
@@ -56,7 +56,7 @@ $function$;
 CREATE OR REPLACE FUNCTION tec.user_get_id(
     _id int
 )
-	RETURNS SETOF type_user_get
+	RETURNS SETOF tec.type_user_get
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN

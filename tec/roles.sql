@@ -3,7 +3,8 @@ CREATE TABLE tec."roles" (
     id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
     "name" varchar NOT NULL,
     description text NULL,
-    active boolean
+    active boolean,
+    CONSTRAINT roles_pk PRIMARY KEY (id)
 );
 /** Create table */
 CREATE UNIQUE INDEX roles_name_idx ON tec.roles USING btree (name);

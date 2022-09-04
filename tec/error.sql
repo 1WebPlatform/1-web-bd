@@ -2,7 +2,8 @@ CREATE TABLE tec."error" (
 	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	"name" varchar NOT NULL,
 	"description" text NOT NULL,
-	"status" varchar NOT NULL
+	"status" varchar NOT NULL,
+	CONSTRAINT error_pk PRIMARY KEY (id)
 );
 
 /** Column comments*/

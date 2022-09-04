@@ -3,7 +3,8 @@ CREATE TABLE handbook."type_component" (
     id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
     "name" varchar NOT NULL,
     description text NULL,
-    active boolean
+    active boolean,
+    CONSTRAINT type_component_pk PRIMARY KEY (id)
 );
 /** Create table */
 CREATE UNIQUE INDEX type_component_name_idx ON handbook.type_component USING btree (name);

@@ -8,7 +8,8 @@ CREATE TABLE tec."user" (
     "password" varchar NOT NULL,
     "active" boolean DEFAULT true,
     "verified" boolean DEFAULT false,
-    "create_date" timestamp WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    "create_date" timestamp WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT user_pk PRIMARY KEY (id)
 );
 /** Create table */
 CREATE UNIQUE INDEX user_email_idx ON tec."user" USING btree (email);

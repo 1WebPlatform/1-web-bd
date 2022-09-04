@@ -3,7 +3,8 @@ CREATE TABLE handbook."type_params" (
     id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
     "name" varchar NOT NULL,
     description text NULL,
-    active boolean
+    active boolean,
+    CONSTRAINT type_params_pk PRIMARY KEY (id)
 );
 /** Create table */
 CREATE UNIQUE INDEX type_params_name_idx ON handbook.type_params USING btree (name);

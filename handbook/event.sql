@@ -3,7 +3,8 @@ CREATE TABLE handbook."event" (
     id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
     "name" varchar NOT NULL,
     description text NULL,
-    active boolean
+    active boolean,
+    CONSTRAINT event_pk PRIMARY KEY (id)
 );
 /** Create table */
 CREATE UNIQUE INDEX event_name_idx ON handbook.event USING btree (name);

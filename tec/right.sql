@@ -3,7 +3,8 @@ CREATE TABLE tec."right" (
     id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
     "name" varchar NOT NULL,
     description text NULL,
-    active boolean
+    active boolean,
+    CONSTRAINT right_pk PRIMARY KEY (id)
 );
 /** Create table */
 CREATE UNIQUE INDEX right_name_idx ON tec.right USING btree (name);

@@ -23,12 +23,12 @@ AS $function$
 		return query select * from tec.error where id = _id;
 	END;
 $function$;
-CREATE OR REPLACE FUNCTION tec.error_get_ids(_ids int)
+CREATE OR REPLACE FUNCTION tec.error_get_ids(_ids int [])
 	RETURNS SETOF "tec"."error"
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN
-		return query select * from tec.error where id in (_ids);
+		return query select * from tec.error where id = any(_ids);
 	END;
 $function$;
 /** Fucntion */

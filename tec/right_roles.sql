@@ -26,11 +26,11 @@ declare
         check_right := (select * from tec.right_check_id(_id_right));
         check_roles := (select * from tec.roles_check_id(_id_roles));
         if check_right <> true and check_roles <> true then
-            select * into error  from tec.error_get_id(10);
+            select * into error  from tec.error_get_id(13);
         elseif check_right <> true then 
-            select * into error  from tec.error_get_id(12);
+            select * into error  from tec.error_get_id(10);
         elseif check_roles <> true then 
-            select * into error  from tec.error_get_id(undefined);
+            select * into error  from tec.error_get_id(12);
         else 
             INSERT INTO  tec.right_roles
             (id_right,id_roles) 

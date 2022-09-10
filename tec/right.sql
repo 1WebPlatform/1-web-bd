@@ -16,12 +16,17 @@ COMMENT ON COLUMN tec.right.active IS 'Активность право';
 /** Column comments*/
 
 /** Fucntion GET  */
-CREATE OR REPLACE FUNCTION tec.right_get()
+CREATE OR REPLACE FUNCTION tec.right_get(
+    _limit int DEFAULT NULL::integer,
+    _offset int DEFAULT NULL::integer,
+    _where varchar DEFAULT NULL::integer,
+    _order_by varchar DEFAULT NULL::integer
+)
 RETURNS SETOF "tec"."right"
 LANGUAGE plpgsql
 AS $function$
     BEGIN
-        return query select * from tec.right;
+        return query EXECUTE (select * from tec.table_get('select * from tec.right', _limit, _offset, _order_by, _where));
     END;
 $function$;
         

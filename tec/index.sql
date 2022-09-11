@@ -1,6 +1,7 @@
 CREATE SCHEMA tec;
 
-
+ create type tec.user_dataset as ("token" json, roles int[], "right" int[], "user" json);
+  create type tec.authentication_result as ("user_" tec.user_dataset, error_ tec.error);
 
 CREATE OR REPLACE FUNCTION tec.table_get(
     _sql character varying, 
@@ -40,3 +41,29 @@ CREATE OR REPLACE FUNCTION tec.right_check (
  		return lib.idx(ids_, id_) <> 0;
  	end;
  $function$;
+
+
+/**  TODO  test функция */
+ CREATE OR REPLACE FUNCTION tec.right_user_check (
+	token_ varchar,
+	id_ int,
+	out error_ tec.error,
+	out res_ record
+)
+
+ LANGUAGE plpgsql
+ AS $function$
+declare 
+	result_ tec.authentication_result;
+ begin 
+	 	select * into result_ from tec.token_authentication(token_);
+	 if result_."error_" is not null then
+	 	error_ :=  result_.error_;
+	 else 
+	 	res_:=  (result_.user_)."user";
+--		select (result_.user_)	* into res_;  
+--	 	select * into res_ from tec.right_check((result_.user_)."right", id_);
+	 end if;
+ 	end;
+ $function$;
+ 

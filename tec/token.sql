@@ -11,7 +11,6 @@ CREATE TABLE tec.token (
 );
 
  create type user_check as (active boolean, verified boolean);
- create type user_dataset as ("token" json, roles json, "right" json, "user" json);
  create type user_authorization as (id int ,active boolean, verified boolean);
 
 /** Fucntion */
@@ -84,8 +83,8 @@ AS $function$
 		'lifetime', t.lifetime
 	   ) as "token",
  
-  json_agg(r.id) as roles,
-   json_agg(rig.id)  as "right",
+  array_agg(r.id)::int[] as roles,
+   array_agg(rig.id)::int[]  as "right",
 	json_build_object(
 		'id', u.id,
 		'name', u."name",
@@ -97,11 +96,11 @@ AS $function$
 		'create_date', u.create_date
 	)  as "user"
 from  tec."token" t 
-left join "user" u ON u.id  = t.id_user 
-left join "roles_user" r_u on r_u.id_user  = u.id 
-left join "roles" r on r.id  = r_u.id_roles 
-left join "right_roles" r_r on r_r.id  = r.id 
-left join "right" rig on rig.id  = r_r.id_right 
+left join tec."user" u ON u.id  = t.id_user 
+left join tec."roles_user" r_u on r_u.id_user  = u.id 
+left join tec."roles" r on r.id  = r_u.id_roles 
+left join tec."right_roles" r_r on r_r.id  = r.id 
+left join tec."right" rig on rig.id  = r_r.id_right 
 where t.value = _token
 group by u.id, t.id, t.value, t.active, t.lifetime;
     END;
@@ -151,14 +150,15 @@ $function$;
 /** Fucntion authentication  */
 create or replace function tec.token_authentication(
 	_token text,
-	out error_ tec.error,
-	out user_ tec.user_dataset
+	out user_ tec.user_dataset,
+	out error_ tec.error
 	)
  	LANGUAGE plpgsql
 AS $function$
 	begin
 	 select * from tec.token_get_id(_token) into user_;
 	 select * into error_ from tec.token_authentication_check(
+	 	((user_.token) ->> 'value')::varchar,
 	 	((user_.token) ->> 'active')::boolean,
 	 	((user_.token) ->> 'lifetime')::timestamp, 
 		((user_.user) ->> 'active')::boolean,
@@ -175,6 +175,7 @@ $function$;
 
  
 create or replace function tec.token_authentication_check(
+	_value_token varchar,
 	_active_token boolean, 
 	_date_token timestamp,
 	_active_user boolean,
@@ -185,7 +186,7 @@ create or replace function tec.token_authentication_check(
 
 AS $function$
 	begin
-		if _active_token <> true or _date_token < CURRENT_TIMESTAMP then
+		if _value_token is null or  _active_token <> true or _date_token < CURRENT_TIMESTAMP then
 			select * into error_ from tec.error_get_id(17);
 		elseif _active_user <> true then
     		select * into error_ from tec.error_get_id(19);
@@ -241,7 +242,7 @@ $function$;
  	    begin
  	    	select u.id, u.active , u.verified  into user_
 			from tec."user" u 
-			where email = 'admin@mail.ru' and "password" = lib.crypt('123', u."password");
+			where email = _email and "password" = lib.crypt(_password, u."password");
  	    	if user_.active <> true then
  	    		select * into error_ from tec.error_get(19); 
    	    	elseif user_.verified <> true then

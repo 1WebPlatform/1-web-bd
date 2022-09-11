@@ -27,5 +27,16 @@ begin
     IF _offset  IS NOT NULL THEN sql := concat(sql || ' offset ' || _offset); END IF;
     return sql;
 END;
-$function$
-;
+$function$;
+
+CREATE OR REPLACE FUNCTION tec.right_check (
+	ids_ int[],
+	id_ int
+)
+ RETURNS  boolean
+ LANGUAGE plpgsql
+ AS $function$
+ 	begin 
+ 		return lib.idx(ids_, id_) <> 0;
+ 	end;
+ $function$;

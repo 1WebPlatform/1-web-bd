@@ -43,12 +43,11 @@ CREATE OR REPLACE FUNCTION tec.right_check (
  $function$;
 
 
-/**  TODO  test функция */
- CREATE OR REPLACE FUNCTION tec.right_user_check (
+CREATE OR REPLACE FUNCTION tec.right_user_check (
 	token_ varchar,
 	id_ int,
-	out error_ tec.error,
-	out res_ record
+	id_error int default 20,
+	out error_ tec.error
 )
 
  LANGUAGE plpgsql
@@ -59,10 +58,8 @@ declare
 	 	select * into result_ from tec.token_authentication(token_);
 	 if result_."error_" is not null then
 	 	error_ :=  result_.error_;
-	 else 
-	 	res_:=  (result_.user_)."user";
---		select (result_.user_)	* into res_;  
---	 	select * into res_ from tec.right_check((result_.user_)."right", id_);
+	 elseif (select * from tec.right_check( (result_.user_)."right", id_)) <> true then
+	 	select * into error_  from tec.error_get_id(id_error);
 	 end if;
  	end;
  $function$;

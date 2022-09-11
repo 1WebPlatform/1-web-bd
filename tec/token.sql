@@ -12,7 +12,7 @@ CREATE TABLE tec.token (
 
  create type user_check as (active boolean, verified boolean);
  create type user_dataset as ("token" json, roles json, "right" json, "user" json);
-
+ create type user_authorization as (id int ,active boolean, verified boolean);
 
 /** Fucntion */
 /** Fucntion SAVE  */
@@ -37,7 +37,38 @@ $function$;
 /** Fucntion SAVE  */
 
 /** Fucntion GET  */
- 
+create or replace function tec.token_get(
+    _limit int DEFAULT NULL::integer,
+    _offset int DEFAULT NULL::integer,
+    _where varchar DEFAULT NULL::integer,
+    _order_by varchar DEFAULT NULL::integer
+)
+	returns  TABLE(
+		id int,
+		"name" varchar, 
+		patronymic varchar, 
+		surname varchar, 
+		email varchar, 
+		"password" varchar, 
+		active boolean, 
+		verified boolean, 
+		create_date timestamptz,  
+		token_id int, 
+		token_value varchar, 
+		token_active boolean,
+		token_create_date timestamptz,
+		token_lifetime timestamptz
+		
+	)
+LANGUAGE plpgsql
+AS $function$
+	begin
+		 return query EXECUTE (
+        select * from tec.table_get('select u.*, t.id  as token_id, t.value as token_value, t.active as token_active, t.create_date as token_create_date, t.lifetime as token_lifetime from tec."token" t left join "user" u ON u.id = t.id_user ', _limit, _offset, _order_by, _where));	
+	end;
+$function$;   
+
+
 CREATE OR REPLACE FUNCTION tec.token_get_id(
 	_token varchar)
     returns SETOF tec.user_dataset
@@ -196,4 +227,31 @@ $function$;
 
 /** Fucntion update */
 
+/** Fucntion  authorization*/
+ CREATE OR REPLACE FUNCTION tec.token_authorization(
+	 _email varchar, 
+	 _password varchar, 
+	 out error_ tec.error,
+	 out token_ varchar
+ )
+ 	LANGUAGE plpgsql
+ 	AS $function$
+ 	declare
+    	user_ tec.user_authorization;
+ 	    begin
+ 	    	select u.id, u.active , u.verified  into user_
+			from tec."user" u 
+			where email = 'admin@mail.ru' and "password" = lib.crypt('123', u."password");
+ 	    	if user_.active <> true then
+ 	    		select * into error_ from tec.error_get(19); 
+   	    	elseif user_.verified <> true then
+				select * into error_ from tec.error_get_id(18);
+   	    	end if;
+	   	    if error_.id is null then
+	   	    	select  * into token_ from tec.token_save(_email, _password, user_.id);
+	   	    end if;
+		end;
+ 	$function$;
+
+/** Fucntion  authorization*/
 /** Function */

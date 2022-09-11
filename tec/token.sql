@@ -78,6 +78,7 @@ $function$;
 
 
 /** Fucntion CHECK  */
+/** TODO возможно не нужно*/
 CREATE OR REPLACE FUNCTION tec.token_check(_token varchar)
     RETURNS boolean
 	LANGUAGE plpgsql
@@ -88,6 +89,8 @@ AS $function$
     END;
 $function$; 
 
+
+/** TODO возможно не нужно*/
 CREATE OR REPLACE FUNCTION tec.token_check_user(
 	_token varchar,
 	out error_ tec.error
@@ -110,8 +113,11 @@ declare
     	end if;
 	END;
 $function$; 
+ 
+/** Fucntion CHECK  */
 
-create or replace function tec.authentication(
+/** Fucntion authentication  */
+create or replace function tec.token_authentication(
 	_token text,
 	out error_ tec.error,
 	out user_ tec.user_dataset
@@ -131,9 +137,10 @@ AS $function$
 	end if;
 	END
 $function$;
-/** Fucntion CHECK  */
+ 
 
-create or replace function tec.authentication_check(
+ 
+create or replace function tec.token_authentication_check(
 	_active_token boolean, 
 	_date_token timestamp,
 	_active_user boolean,
@@ -153,5 +160,6 @@ AS $function$
     	end if;
 	END
 $function$; 
-/** Fucntion */
+/** Fucntion authentication  */
+
 /** Fucntion */

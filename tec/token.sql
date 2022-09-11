@@ -47,6 +47,7 @@ AS $function$
     BEGIN
        return query select  
 	   json_build_object(
+		'id', t.id,
 		'value', t.value,
 		'active', t.active,
 		'lifetime', t.lifetime
@@ -71,7 +72,7 @@ left join "roles" r on r.id  = r_u.id_roles
 left join "right_roles" r_r on r_r.id  = r.id 
 left join "right" rig on rig.id  = r_r.id_right 
 where t.value = _token
-group by u.id, t.value, t.active, t.lifetime;
+group by u.id, t.id, t.value, t.active, t.lifetime;
     END;
 $function$;
 /** Fucntion GET  */
@@ -126,7 +127,7 @@ create or replace function tec.token_authentication(
 AS $function$
 	begin
 	 select * from tec.token_get_id(_token) into user_;
-	 select * into error_ from tec.authentication_check(
+	 select * into error_ from tec.token_authentication_check(
 	 	((user_.token) ->> 'active')::boolean,
 	 	((user_.token) ->> 'lifetime')::timestamp, 
 		((user_.user) ->> 'active')::boolean,
@@ -134,6 +135,8 @@ AS $function$
 	);
 	if error_.id IS NOT NULL then
 		user_ := null;
+	else
+		PERFORM tec.token_update_time( ((user_.token) ->> 'id')::int);
 	end if;
 	END
 $function$;
@@ -162,4 +165,35 @@ AS $function$
 $function$; 
 /** Fucntion authentication  */
 
-/** Fucntion */
+/** Fucntion update */
+ create or replace function tec.token_update_time(
+	_id int
+)
+	returns  void
+ 	LANGUAGE plpgsql
+
+AS $function$
+	begin
+		update tec.token t
+		    SET lifetime = CURRENT_TIMESTAMP + interval '5 hour'
+			where t.id = _id; 	
+	end;
+$function$;  
+
+ create or replace function tec.token_update_active_false(
+	_id int
+)
+	returns  void
+ 	LANGUAGE plpgsql
+
+AS $function$
+	begin
+		update tec.token t
+		    SET active = false 
+			where t.id = _id; 	
+	end;
+$function$;
+
+/** Fucntion update */
+
+/** Function */

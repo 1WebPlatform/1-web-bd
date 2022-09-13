@@ -1,0 +1,12 @@
+INSERT INTO tec."right" ("name", description, active) VALUES('Отображать пользователей', 'Отображать пользователей', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Редактировать пользователей', 'Редактировать пользователей', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Банить и разбанивать пользователей', 'Банить и разбанивать пользователей', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Отображать роли', 'Отображать роли', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Редактировать роли', 'Редактировать роли', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Удалять роли', 'Удалять роли', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Отображать права', 'Отображать права', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Редактировать права', 'Редактировать права', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Удалить права', 'Удалить права', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Отображать права у ролей', 'Отображать права у ролей', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Редактировать права у ролей', 'Редактировать права у ролей', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Отображать токены', 'Отображать токены', true);

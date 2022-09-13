@@ -10,3 +10,6 @@ INSERT INTO tec."right" ("name", description, active) VALUES('Удалить п�
 INSERT INTO tec."right" ("name", description, active) VALUES('Отображать права у ролей', 'Отображать права у ролей', true);
 INSERT INTO tec."right" ("name", description, active) VALUES('Редактировать права у ролей', 'Редактировать права у ролей', true);
 INSERT INTO tec."right" ("name", description, active) VALUES('Отображать токены', 'Отображать токены', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Работа с конфигами', 'CRUD скрина, компонентов, params', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Работа с проектами', 'CRUD проектов и скринов в проектах', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Работа с типами конфигов', 'Редактирования  и удаления handbook type-params и type_component ', true);

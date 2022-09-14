@@ -40,22 +40,16 @@ CREATE TYPE tec.type_user_get AS (
 /** Fucntion */
 /** Fucntion GET  */
 CREATE OR REPLACE FUNCTION tec.user_get(
-    _token varchar,
 	_limit int DEFAULT NULL::integer,
     _offset int DEFAULT NULL::integer,
     _where varchar DEFAULT NULL::integer,
     _order_by varchar DEFAULT NULL::integer,
-    out data_ tec.type_user_get,
-    out error_ tec.error
 )
---	RETURNS SETOF tec.type_user_get
+	RETURNS SETOF tec.type_user_get
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN
-        select * into error_ from tec.right_user_check(_token, 1);
-        if error_ is not null then
-            EXECUTE (select * from tec.table_get('select id, name, surname,patronymic, email,active,verified, create_date from tec."user" ', _limit, _offset, _order_by, _where));
-        end if;
+        return query EXECUTE (select * from tec.table_get('select id, name, surname,patronymic, email,active,verified, create_date from tec."user" ', _limit, _offset, _order_by, _where));        end if;
  	END;
 $function$;
 

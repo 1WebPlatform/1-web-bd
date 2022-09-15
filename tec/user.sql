@@ -39,17 +39,17 @@ CREATE TYPE tec.type_user_get AS (
 
 /** Fucntion */
 /** Fucntion GET  */
-CREATE OR REPLACE FUNCTION tec.user_get(
+ CREATE OR REPLACE FUNCTION tec.user_get(
 	_limit int DEFAULT NULL::integer,
     _offset int DEFAULT NULL::integer,
     _where varchar DEFAULT NULL::integer,
-    _order_by varchar DEFAULT NULL::integer,
+    _order_by varchar DEFAULT NULL::integer
 )
 	RETURNS SETOF tec.type_user_get
 	LANGUAGE plpgsql
 AS $function$
 	BEGIN
-        return query EXECUTE (select * from tec.table_get('select id, name, surname,patronymic, email,active,verified, create_date from tec."user" ', _limit, _offset, _order_by, _where));        end if;
+        return query EXECUTE (select * from tec.table_get('select id, name, surname,patronymic, email,active,verified, create_date from tec."user" ', _limit, _offset, _order_by, _where));
  	END;
 $function$;
 

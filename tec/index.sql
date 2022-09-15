@@ -64,3 +64,22 @@ declare
  	end;
  $function$;
  
+
+
+CREATE OR REPLACE FUNCTION tec.get_function(
+    _limit integer DEFAULT NULL::integer, 
+    _offset integer DEFAULT NULL::integer, 
+    _order_by character varying DEFAULT NULL::character varying, 
+    _where text DEFAULT NULL::text
+)
+ RETURNS TABLE(name information_schema.sql_identifier , schema information_schema.sql_identifier )
+ LANGUAGE plpgsql
+AS $function$
+    begin 
+        return query EXECUTE (select * from tec.table_get(
+            ' SELECT routine_name  as "name", specific_schema  as "schema" FROM information_schema.routines 
+                WHERE routine_type=''FUNCTION'' AND specific_schema <> ''lib'' AND specific_schema <> ''pg_catalog'' AND specific_schema <> ''information_schema''',
+            _limit, _offset, _order_by, _where)    
+        );
+    end;
+$function$;

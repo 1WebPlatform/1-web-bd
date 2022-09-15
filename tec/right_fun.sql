@@ -26,3 +26,16 @@ AS $function$
         );
     end;
 $function$;
+
+
+CREATE OR REPLACE FUNCTION tec.right_fun_get_find(
+    _schema varchar,
+    _name varchar
+)
+RETURNS TABLE(id_right int)
+LANGUAGE plpgsql
+AS $function$
+    begin
+	  	return query select rf.id_right  from  tec.right_fun rf where rf."schema" = _schema and rf."name" = _name;    	
+    end
+$function$;

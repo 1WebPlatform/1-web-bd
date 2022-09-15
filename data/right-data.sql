@@ -1,5 +1,5 @@
 INSERT INTO tec."right" ("name", description, active) VALUES('Отображать пользователей', 'Отображать пользователей', true);
-INSERT INTO tec."right" ("name", description, active) VALUES('Редактировать пользователей', 'Редактировать пользователей', true);
+INSERT INTO tec."right" ("name", description, active) VALUES('Работа с пользователями', 'Редактировать и создавать пользователей', true);
 INSERT INTO tec."right" ("name", description, active) VALUES('Банить и разбанивать пользователей', 'Банить и разбанивать пользователей', true);
 INSERT INTO tec."right" ("name", description, active) VALUES('Отображать роли', 'Отображать роли', true);
 INSERT INTO tec."right" ("name", description, active) VALUES('Редактировать роли', 'Редактировать роли', true);

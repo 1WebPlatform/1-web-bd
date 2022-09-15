@@ -1,0 +1,14 @@
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('user_get', 'tec', 1);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('user_get_id', 'tec', 1);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('user_check_id', 'tec', 1);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('user_check_email', 'tec', 1);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('user_save', 'tec', 2);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('user_update_id', 'tec', 2);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_get', 'tec', 4);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_get_id', 'tec', 4);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_check_name', 'tec', 4);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_check_update', 'tec', 4);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_check_id', 'tec', 4);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_save', 'tec', 5);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_update_id', 'tec', 5);
+INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_delete_id', 'tec', 6);

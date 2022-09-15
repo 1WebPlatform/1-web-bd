@@ -98,14 +98,16 @@ CREATE OR REPLACE FUNCTION tec.user_save(
 LANGUAGE plpgsql
 AS $function$
     BEGIN
-    IF (select * from tec.user_check_email(_email)) <> true then
-    INSERT INTO tec.user
-      ("name", "patronymic", "surname", "email", "password")
-        VALUES (_name, _patronymic,_surname, _email, lib.crypt(_password::TEXT, lib.gen_salt('bf'::TEXT))) 
-        RETURNING id INTO id_;
-ELSE 
-    select * into error from tec.error_get_id(7);		
-END IF;	
+        IF (select * from tec.user_check_email(_email)) <> true then
+            INSERT INTO tec.user
+                ("name", "patronymic", "surname", "email", "password")
+                VALUES (_name, _patronymic,_surname, _email, lib.crypt(_password::TEXT, lib.gen_salt('bf'::TEXT)));
+                RETURNING id INTO id_;
+            INSERT INTO tec.right_roles ("id_user", "id_roles")
+                VALUES (_id, 2);
+        ELSE 
+            select * into error from tec.error_get_id(7);		
+        END IF;	
     END;
 $function$;
 /** Fucntion SAVE  */

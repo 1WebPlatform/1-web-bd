@@ -9,5 +9,5 @@ CREATE TABLE config."screen" (
     active boolean DEFAULT true,
     id_right int,
     CONSTRAINT screen_fk FOREIGN KEY (id_right) REFERENCES tec.right(id),
-    CONSTRAINT event_pk PRIMARY KEY (id)
+    CONSTRAINT screen_pk PRIMARY KEY (id)
 );

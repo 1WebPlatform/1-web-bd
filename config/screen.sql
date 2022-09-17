@@ -71,7 +71,7 @@ LANGUAGE plpgsql
 AS $function$
    BEGIN
        if (select * from tec.right_check_id(_id_right)) <> true then 
-           select * into error_ from tec.error_get_id(12);
+           select * into error_ from tec.error_get_id(10);
            return;
        end if;
        INSERT INTO config.screen
@@ -115,7 +115,7 @@ AS $function$
            return;
       end if;
      if (select * from tec.right_check_id(_id_right)) <> true then 
-         select * into error_ from tec.error_get_id(12);
+         select * into error_ from tec.error_get_id(10);
          return;
      end if;
        UPDATE  config.screen SET

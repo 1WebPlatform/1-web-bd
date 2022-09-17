@@ -1,10 +1,10 @@
 CREATE TABLE config."proekt"(
-   id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
-   name varchar NOT NULL,
-   description text NULL,
-   icons varchar,
-   active boolean DEFAULT true,
-   date_create timestamp WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+   "id" int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+   "name" varchar NOT NULL,
+   "description" text NULL,
+   "icons" varchar,
+   "active" boolean DEFAULT true,
+   "date_create" timestamp WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
    CONSTRAINT proekt_pk PRIMARY KEY (id)
 );
 CREATE OR REPLACE FUNCTION config.proekt_get(
@@ -17,7 +17,7 @@ RETURNS SETOF config.proekt
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-   return query EXECUTE (select * from  tec.table_get('select * from config.proekt', _limit, _offset, _order_by, _where));
+       return query EXECUTE (select * from  tec.table_get('select * from config.proekt', _limit, _offset, _order_by, _where));
    END;
 $function$;
 
@@ -54,7 +54,7 @@ LANGUAGE plpgsql
 AS $function$
    BEGIN
        INSERT INTO config.proekt
-           (name,description,icons)
+           ("name","description","icons")
            VALUES  (_name,_description,_icons)
            RETURNING id INTO id_; 
    END;
@@ -68,15 +68,16 @@ CREATE OR REPLACE FUNCTION config.proekt_delete(
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-      if (select * from config.proekt_check_id) then 
+      if (select * from config.proekt_check_id(_id)) then 
            DELETE FROM config.proekt  where id = _id RETURNING id INTO id_;
       else
-      select * from tec.errors_get_id(22);
+      select * into error_ from tec.error_get_id(22);
       end if;
    END;
 $function$;
 
 CREATE OR REPLACE FUNCTION config.proekt_update(
+   _id int, 
    _name varchar,
    _description text,
    _icons varchar,
@@ -86,14 +87,14 @@ CREATE OR REPLACE FUNCTION config.proekt_update(
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-      if (select * from config.proekt_check_id) then 
+      if (select * from config.proekt_check_id(_id)) then 
            select * into error_ from tec.error_get_id(22);
            return;
       end if;
        UPDATE  config.proekt SET
-        name = _name,
-        description = _description,
-        icons = _icons
+        "name" = _name,
+        "description" = _description,
+        "icons" = _icons
        RETURNING id INTO id_; 
    END;
 $function$;

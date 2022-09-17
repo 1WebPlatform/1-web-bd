@@ -20,6 +20,7 @@ INSERT INTO tec.error ("name", description, status) VALUES('Доступ зап�
 INSERT INTO tec.error ("name", description, status) VALUES('Доступ запрещен', 'Вашу учетку забанили', '403');
 INSERT INTO tec.error ("name", description, status) VALUES('Доступ запрещен', 'У вас нет прав на эти действия', '403');
 INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанный id скрина не существует', '404');
+INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанный id проекта не существует', '404');
 
 
 /** DATA bd */

@@ -1,14 +1,14 @@
 CREATE TABLE config."component"(
-   id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
-   name varchar NOT NULL,
-   description text NULL,
-   css text NULL,
-   params text NULL,
-   schema text NULL,
-   event text NULL,
-   id_right int NULL,
-   id_type int NOT NULL,
-   id_parent int NULL,
+   "id" int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+   "name" varchar NOT NULL,
+   "description" text NULL,
+   "css" text NULL,
+   "params" text NULL,
+   "schema" text NULL,
+   "event" text NULL,
+   "id_right" int NULL,
+   "id_type" int NOT NULL,
+   "id_parent" int NULL,
    CONSTRAINT component_pk PRIMARY KEY (id),
    CONSTRAINT component_fk FOREIGN KEY (id_right) REFERENCES tec.right(id)
 );
@@ -22,7 +22,7 @@ RETURNS SETOF config.component
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-   return query EXECUTE (select * from  tec.table_get('select * from config.component', _limit, _offset, _order_by, _where));
+       return query EXECUTE (select * from  tec.table_get('select * from config.component', _limit, _offset, _order_by, _where));
    END;
 $function$;
 
@@ -77,7 +77,7 @@ AS $function$
            return;
        end if;
        INSERT INTO config.component
-           (name,description,css,params,schema,event,id_right,id_type,id_parent)
+           ("name","description","css","params","schema","event","id_right","id_type","id_parent")
            VALUES  (_name,_description,_css,_params,_schema,_event,_id_right,_id_type,_id_parent)
            RETURNING id INTO id_; 
    END;
@@ -91,15 +91,16 @@ CREATE OR REPLACE FUNCTION config.component_delete(
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-      if (select * from config.component_check_id) then 
+      if (select * from config.component_check_id(_id)) then 
            DELETE FROM config.component  where id = _id RETURNING id INTO id_;
       else
-      select * from tec.errors_get_id(25);
+      select * into error_ from tec.error_get_id(25);
       end if;
    END;
 $function$;
 
 CREATE OR REPLACE FUNCTION config.component_update(
+   _id int, 
    _name varchar,
    _description text,
    _css text,
@@ -115,7 +116,7 @@ CREATE OR REPLACE FUNCTION config.component_update(
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-      if (select * from config.component_check_id) then 
+      if (select * from config.component_check_id(_id)) then 
            select * into error_ from tec.error_get_id(25);
            return;
       end if;
@@ -132,15 +133,15 @@ AS $function$
          return;
      end if;
        UPDATE  config.component SET
-        name = _name,
-        description = _description,
-        css = _css,
-        params = _params,
-        schema = _schema,
-        event = _event,
-        id_right = _id_right,
-        id_type = _id_type,
-        id_parent = _id_parent
+        "name" = _name,
+        "description" = _description,
+        "css" = _css,
+        "params" = _params,
+        "schema" = _schema,
+        "event" = _event,
+        "id_right" = _id_right,
+        "id_type" = _id_type,
+        "id_parent" = _id_parent
        RETURNING id INTO id_; 
    END;
 $function$;

@@ -5,6 +5,7 @@ CREATE TABLE config."component"(
    css text NULL,
    params text NULL,
    schema text NULL,
+   event text NULL,
    id_right int NULL,
    id_type int NOT NULL,
    id_parent int NULL,
@@ -53,6 +54,7 @@ CREATE OR REPLACE FUNCTION config.component_save(
    _css text,
    _params text,
    _schema text,
+   _event text,
    _id_right int,
    _id_type int,
    _id_parent int,
@@ -75,8 +77,8 @@ AS $function$
            return;
        end if;
        INSERT INTO config.component
-           (name,description,css,params,schema,id_right,id_type,id_parent)
-           VALUES  (_name,_description,_css,_params,_schema,_id_right,_id_type,_id_parent)
+           (name,description,css,params,schema,event,id_right,id_type,id_parent)
+           VALUES  (_name,_description,_css,_params,_schema,_event,_id_right,_id_type,_id_parent)
            RETURNING id INTO id_; 
    END;
 $function$;
@@ -103,6 +105,7 @@ CREATE OR REPLACE FUNCTION config.component_update(
    _css text,
    _params text,
    _schema text,
+   _event text,
    _id_right int,
    _id_type int,
    _id_parent int,
@@ -134,6 +137,7 @@ AS $function$
         css = _css,
         params = _params,
         schema = _schema,
+        event = _event,
         id_right = _id_right,
         id_type = _id_type,
         id_parent = _id_parent

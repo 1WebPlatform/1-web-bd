@@ -49,7 +49,7 @@ CREATE OR REPLACE FUNCTION config.proekt_screen_get(
     _where varchar DEFAULT NULL::integer,
     _order_by varchar DEFAULT NULL::integer
 )
-RETURNS TABLE(proekt_id serial, proekt_name varchar , proekt_description text , proekt_icons varchar , proekt_active bool, proekt_date_create timestamptz, screen_id serial NOT, screen_name varchar , screen_description text , screen_title varchar , screen_url varchar , screen_icons varchar , screen_active bool, right_id serial NOT, right_name varchar , right_description text, right_active bool)
+RETURNS TABLE(proekt_id integer, proekt_name varchar , proekt_description text , proekt_icons varchar , proekt_active bool, proekt_date_create timestamptz, screen_id integer,  screen_name varchar , screen_description text , screen_title varchar , screen_url varchar , screen_icons varchar , screen_active bool, right_id integer, right_name varchar , right_description text, right_active bool)
 LANGUAGE plpgsql
 AS $function$
     BEGIN   
@@ -65,7 +65,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.proekt_screen_get_id(
     _id int
 )
-RETURNS TABLE(proekt_id serial, proekt_name varchar , proekt_description text , proekt_icons varchar , proekt_active bool, proekt_date_create timestamptz, screen_id serial NOT, screen_name varchar , screen_description text , screen_title varchar , screen_url varchar , screen_icons varchar , screen_active bool, right_id serial NOT, right_name varchar , right_description text, right_active bool)
+RETURNS TABLE(proekt_id integer, proekt_name varchar , proekt_description text , proekt_icons varchar , proekt_active bool, proekt_date_create timestamptz, screen_id integer,  screen_name varchar , screen_description text , screen_title varchar , screen_url varchar , screen_icons varchar , screen_active bool, right_id integer, right_name varchar , right_description text, right_active bool)
 LANGUAGE plpgsql
 AS $function$
     BEGIN   

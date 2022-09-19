@@ -11,6 +11,7 @@ CREATE TABLE config."component"(
    "id_parent" int NULL,
    CONSTRAINT component_pk PRIMARY KEY (id),
    CONSTRAINT component_fk FOREIGN KEY (id_right) REFERENCES tec.right(id)
+   CONSTRAINT component_fk_1 FOREIGN KEY (id_type) REFERENCES handbook.type_component(id)
 );
 CREATE OR REPLACE FUNCTION config.component_get(
    _limit integer DEFAULT NULL::integer,

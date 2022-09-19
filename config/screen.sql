@@ -35,6 +35,36 @@ AS $function$
    END;
 $function$;
 
+CREATE OR REPLACE FUNCTION config.screen_get_id_component(
+   _id int
+)
+RETURNS TABLE(screen json)
+LANGUAGE plpgsql
+AS $function$
+   BEGIN
+   return query select json_build_object(
+	   'screen', s.*,
+	   'component', c.*
+   ) as screen
+   from config.screen s 
+   left join config.screen_component sc on sc.id_screen = s.id 
+   left join config.component c on c.id = sc.id_component
+   where s.id  = _id;
+      END;
+$function$;
+
+CREATE OR REPLACE FUNCTION config.screen_check_id(
+   _id int
+)
+RETURNS boolean 
+LANGUAGE plpgsql
+AS $function$
+   BEGIN
+      return  
+   END;
+$function$;
+
+
 CREATE OR REPLACE FUNCTION config.screen_check_id(
    _id int
 )

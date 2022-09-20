@@ -43,13 +43,15 @@ LANGUAGE plpgsql
 AS $function$
    BEGIN
    return query select json_build_object(
-	   'screen', s.*,
-	   'component', c.*
-   ) as screen
-   from config.screen s 
-   left join config.screen_component sc on sc.id_screen = s.id 
-   left join config.component c on c.id = sc.id_component
-   where s.id  = _id;
+	'screen', s.*,
+	'component', jsonb_agg(c.*)
+) as screen
+from config.screen s 
+left join config.screen_component sc on sc.id_screen = s.id 
+left join config.component c on c.id = sc.id_component
+where s.id  = _id
+group by s.*
+limit 1;
       END;
 $function$;
 

@@ -26,3 +26,7 @@ INSERT INTO tec.error ("name", description, status) VALUES('Запись не н
 INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанный id  типа компонента не существует', '404');
 INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанная связь id скрина и компонента не существует', '404');
 INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанный id скрина и компонента  не существует', '404');
+INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанный id параметра не существует', '404');
+INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанная связь id тип компонента и параметра не существует', '404');
+INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанный id параметра  и id типа компонента не существует', '404');
+

@@ -1,8 +1,7 @@
 CREATE SCHEMA tec;
 
- create type tec.user_dataset as ("token" json, roles int[], "right" int[], "user" json);
-  create type tec.authentication_result as ("user_" tec.user_dataset, error_ tec.error);
-
+create type tec.user_dataset as ("token" json, roles int[], "right" int[], "user" json);
+create type tec.authentication_result as ("user_" tec.user_dataset, error_ json);
 CREATE OR REPLACE FUNCTION tec.table_get(
     _sql character varying, 
     _limit integer DEFAULT NULL::integer, 
@@ -30,6 +29,7 @@ begin
 END;
 $function$;
 
+
 CREATE OR REPLACE FUNCTION tec.right_check (
 	ids_ int[],
 	id_ int
@@ -42,31 +42,7 @@ CREATE OR REPLACE FUNCTION tec.right_check (
  	end;
  $function$;
 
-
-CREATE OR REPLACE FUNCTION tec.right_user_check (
-	token_ varchar,
-	id_ int,
-	id_error int default 20,
-	OUT error_  json
-)
-
- LANGUAGE plpgsql
- AS $function$
-declare 
-	result_ tec.authentication_result;
- begin 
-	 	select * into result_ from tec.token_authentication(token_);
-	 if result_."error_" is not null then
-	 	error_ :=  result_.error_;
-	 elseif (select * from tec.right_check( (result_.user_)."right", id_)) <> true then
-	 	select * into error_  from tec.error_get_id(id_error);
-	 end if;
- 	end;
- $function$;
- 
-
-
-CREATE OR REPLACE FUNCTION tec.get_function(
+ CREATE OR REPLACE FUNCTION tec.get_function(
     _limit integer DEFAULT NULL::integer, 
     _offset integer DEFAULT NULL::integer, 
     _order_by character varying DEFAULT NULL::character varying, 

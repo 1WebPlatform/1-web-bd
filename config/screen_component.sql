@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION config.screen_component_save(
     _id_screen int,
     _id_component int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.screen_component_delete(
     _id int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -109,7 +109,7 @@ CREATE OR REPLACE FUNCTION config.screen_component_update_id(
     _id_screen integer, 
     _id_component integer,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

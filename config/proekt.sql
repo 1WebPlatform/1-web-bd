@@ -48,7 +48,7 @@ CREATE OR REPLACE FUNCTION config.proekt_save(
    _description text,
    _icons varchar,
    out id_ int, 
-   out error_ tec.error 
+   OUT error_  json 
 )
 LANGUAGE plpgsql
 AS $function$
@@ -63,7 +63,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.proekt_delete(
    _id int,
    out id_ int, 
-   out error_ tec.error 
+   OUT error_  json 
 )
 LANGUAGE plpgsql
 AS $function$
@@ -82,7 +82,7 @@ CREATE OR REPLACE FUNCTION config.proekt_update(
    _description text,
    _icons varchar,
    out id_ int, 
-   out error_ tec.error
+   OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

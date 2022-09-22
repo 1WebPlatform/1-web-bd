@@ -124,7 +124,7 @@ $function$;
 /** TODO возможно не нужно*/
 CREATE OR REPLACE FUNCTION tec.token_check_user(
 	_token varchar,
-	out error_ tec.error
+	OUT error_  json
 )
 	LANGUAGE plpgsql
 
@@ -151,7 +151,7 @@ $function$;
 create or replace function tec.token_authentication(
 	_token text,
 	out user_ tec.user_dataset,
-	out error_ tec.error
+	OUT error_  json
 	)
  	LANGUAGE plpgsql
 AS $function$
@@ -180,7 +180,7 @@ create or replace function tec.token_authentication_check(
 	_date_token timestamp,
 	_active_user boolean,
 	_verified_user boolean,
-	out error_ tec.error
+	OUT error_  json
 )
  	LANGUAGE plpgsql
 
@@ -232,7 +232,7 @@ $function$;
  CREATE OR REPLACE FUNCTION tec.token_authorization(
 	 _email varchar, 
 	 _password varchar, 
-	 out error_ tec.error,
+	 OUT error_  json,
 	 out token_ varchar
  )
  	LANGUAGE plpgsql

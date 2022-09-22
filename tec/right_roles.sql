@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION tec.right_roles_save(
     _id_right int,
     _id_roles int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION tec.right_roles_delete(
     _id int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -109,7 +109,7 @@ CREATE OR REPLACE FUNCTION tec.right_roles_update_id(
     _id_right integer, 
     _id_roles integer,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

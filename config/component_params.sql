@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION config.component_params_save(
     _id_component int,
     _id_params int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.component_params_delete(
     _id int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -110,7 +110,7 @@ CREATE OR REPLACE FUNCTION config.component_params_update_id(
     _id_component integer, 
     _id_params integer,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

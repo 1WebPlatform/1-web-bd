@@ -93,7 +93,7 @@ CREATE OR REPLACE FUNCTION tec.user_save(
     _email varchar,
     _password varchar,
     OUT id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -120,7 +120,7 @@ CREATE OR REPLACE FUNCTION tec.user_update_id(
     _surname varchar,
     _password varchar,
     OUT id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

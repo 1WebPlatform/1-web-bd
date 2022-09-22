@@ -60,7 +60,7 @@ CREATE OR REPLACE FUNCTION config.component_save(
    _id_type int,
    _id_parent int,
    out id_ int, 
-   out error_ tec.error 
+   OUT error_  json 
 )
 LANGUAGE plpgsql
 AS $function$
@@ -87,7 +87,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.component_delete(
    _id int,
    out id_ int, 
-   out error_ tec.error 
+   OUT error_  json 
 )
 LANGUAGE plpgsql
 AS $function$
@@ -112,7 +112,7 @@ CREATE OR REPLACE FUNCTION config.component_update(
    _id_type int,
    _id_parent int,
    out id_ int, 
-   out error_ tec.error
+   OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

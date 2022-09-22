@@ -75,7 +75,7 @@ CREATE OR REPLACE FUNCTION tec.right_save(
     _description text DEFAULT NULL::character varying,
     _active boolean DEFAULT true,
     OUT id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -97,7 +97,7 @@ CREATE OR REPLACE FUNCTION tec.right_update_id(
     _name varchar,
     _description text DEFAULT NULL::character varying,
     _active boolean DEFAULT true,
-    out error_ tec.error, 
+    OUT error_  json, 
     OUT id_ int
 )
 LANGUAGE plpgsql
@@ -120,7 +120,7 @@ BEGIN
 END;
 $function$;
 
-CREATE OR REPLACE FUNCTION tec.right_delete_id(_id int, out error_ tec.error, OUT id_ int)
+CREATE OR REPLACE FUNCTION tec.right_delete_id(_id int, OUT error_  json, OUT id_ int)
 LANGUAGE plpgsql
 AS $function$
 BEGIN

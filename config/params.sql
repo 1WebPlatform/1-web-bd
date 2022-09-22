@@ -49,7 +49,7 @@ CREATE OR REPLACE FUNCTION config.params_save(
    _select text,
    _id_type text,
    out id_ int, 
-   out error_ tec.error 
+   OUT error_  json 
 )
 LANGUAGE plpgsql
 AS $function$
@@ -68,7 +68,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.params_delete(
    _id int,
    out id_ int, 
-   out error_ tec.error 
+   OUT error_  json 
 )
 LANGUAGE plpgsql
 AS $function$
@@ -87,7 +87,7 @@ CREATE OR REPLACE FUNCTION config.params_update(
    _select text,
    _id_type text,
    out id_ int, 
-   out error_ tec.error
+   OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION config.proekt_screen_save(
     _id_proekt int,
     _id_screen int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.proekt_screen_delete(
     _id int,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$
@@ -109,7 +109,7 @@ CREATE OR REPLACE FUNCTION config.proekt_screen_update_id(
     _id_proekt integer, 
     _id_screen integer,
     out id_ int,
-    out error_ tec.error
+    OUT error_  json
 )
 LANGUAGE plpgsql
 AS $function$

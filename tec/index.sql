@@ -47,7 +47,7 @@ CREATE OR REPLACE FUNCTION tec.right_user_check (
 	token_ varchar,
 	id_ int,
 	id_error int default 20,
-	out error_ tec.error
+	OUT error_  json
 )
 
  LANGUAGE plpgsql

@@ -31,6 +31,23 @@ AS $function$
 		return query select * from tec.error where id = any(_ids);
 	END;
 $function$;
+
+
+CREATE OR REPLACE FUNCTION tec.error_get_id(_id integer, out error_ json)
+ LANGUAGE plpgsql
+AS $function$
+	BEGIN  
+	select 
+		json_build_object(
+			'id', e.id ,
+			'name', e."name",
+			'description', e.description, 
+			'status', e.status 
+		) into error_  from tec.error e where id = _id;
+	END;
+$function$
+;
+
 /** Fucntion */
 /** Fucntion GET  */
 

@@ -10,8 +10,8 @@ CREATE TABLE tec.token (
     CONSTRAINT token_pk_fk FOREIGN KEY (id_user) REFERENCES tec.user(id)
 );
 
- create type user_check as (active boolean, verified boolean);
- create type user_authorization as (id int ,active boolean, verified boolean);
+ create type tec.user_check as (active boolean, verified boolean);
+ create type tec.user_authorization as (id int ,active boolean, verified boolean);
 
 /** Fucntion */
 /** Fucntion SAVE  */

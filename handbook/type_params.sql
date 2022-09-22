@@ -128,11 +128,11 @@ END;
 $function$;
 
 /** Start Fucntion */
-select * from handbook.type_params_save(_name := 'test',_description := 'test', _active := false );
-select * from handbook.type_params_get();
-select * from handbook.type_params_get_id(_id := 1);
-select * from handbook.type_params_check_id(_id := 1);
-select * from handbook.type_params_check_name(_name := 'test');
-select * from handbook.type_params_delete_id(_id := 1);
-select * from handbook.type_params_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
+-- select * from handbook.type_params_save(_name := 'test',_description := 'test', _active := false );
+-- select * from handbook.type_params_get();
+-- select * from handbook.type_params_get_id(_id := 1);
+-- select * from handbook.type_params_check_id(_id := 1);
+-- select * from handbook.type_params_check_name(_name := 'test');
+-- select * from handbook.type_params_delete_id(_id := 1);
+-- select * from handbook.type_params_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
 /** Start Fucntion */

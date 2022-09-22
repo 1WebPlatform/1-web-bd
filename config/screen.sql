@@ -62,18 +62,6 @@ RETURNS boolean
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-      return  
-   END;
-$function$;
-
-
-CREATE OR REPLACE FUNCTION config.screen_check_id(
-   _id int
-)
-RETURNS boolean 
-LANGUAGE plpgsql
-AS $function$
-   BEGIN
       return EXISTS (select * from config.screen where "id" = _id);
    END;
 $function$;

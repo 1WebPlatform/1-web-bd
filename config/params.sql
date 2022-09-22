@@ -2,8 +2,8 @@ CREATE TABLE config."params"(
    id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
    name varchar NOT NULL,
    description text NULL,
-   select text NULL,
-   id_type text NULL,
+   "select" text NULL,
+   id_type int NULL,
    CONSTRAINT params_pk PRIMARY KEY (id),
    CONSTRAINT params_fk FOREIGN KEY (id_type) REFERENCES handbook.type_params(id)
 );
@@ -59,7 +59,7 @@ AS $function$
            return;
        end if;
        INSERT INTO config.params
-           (name,description,select,id_type)
+           (name,description,"select",id_type)
            VALUES  (_name,_description,_select,_id_type)
            RETURNING id INTO id_; 
    END;
@@ -103,7 +103,7 @@ AS $function$
        UPDATE  config.params SET
         name = _name,
         description = _description,
-        select = _select,
+        "select" = _select,
         id_type = _id_type
        RETURNING id INTO id_; 
    END;

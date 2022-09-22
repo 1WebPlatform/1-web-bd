@@ -133,11 +133,11 @@ END;
 $function$;
 
 /** Start Fucntion */
-select * from tec.roles_save(_name := 'test',_description := 'test', _active := false );
-select * from tec.roles_get();
-select * from tec.roles_get_id(_id := 1);
-select * from tec.roles_check_id(_id := 1);
-select * from tec.roles_check_name(_name := 'test');
-select * from tec.roles_delete_id(_id := 1);
-select * from tec.roles_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
+-- select * from tec.roles_save(_name := 'test',_description := 'test', _active := false );
+-- select * from tec.roles_get();
+-- select * from tec.roles_get_id(_id := 1);
+-- select * from tec.roles_check_id(_id := 1);
+-- select * from tec.roles_check_name(_name := 'test');
+-- select * from tec.roles_delete_id(_id := 1);
+-- select * from tec.roles_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
 /** Start Fucntion */

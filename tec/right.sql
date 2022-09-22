@@ -133,11 +133,11 @@ END;
 $function$;
 
 /** Start Fucntion */
-select * from tec.right_save(_name := 'test',_description := 'test', _active := false );
-select * from tec.right_get();
-select * from tec.right_get_id(_id := 1);
-select * from tec.right_check_id(_id := 1);
-select * from tec.right_check_name(_name := 'test');
-select * from tec.right_delete_id(_id := 1);
-select * from tec.right_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
+-- select * from tec.right_save(_name := 'test',_description := 'test', _active := false );
+-- select * from tec.right_get();
+-- select * from tec.right_get_id(_id := 1);
+-- select * from tec.right_check_id(_id := 1);
+-- select * from tec.right_check_name(_name := 'test');
+-- select * from tec.right_delete_id(_id := 1);
+-- select * from tec.right_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
 /** Start Fucntion */

@@ -128,11 +128,11 @@ END;
 $function$;
 
 /** Start Fucntion */
-select * from handbook.event_save(_name := 'test',_description := 'test', _active := false );
-select * from handbook.event_get();
-select * from handbook.event_get_id(_id := 1);
-select * from handbook.event_check_id(_id := 1);
-select * from handbook.event_check_name(_name := 'test');
-select * from handbook.event_delete_id(_id := 1);
-select * from handbook.event_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
+-- select * from handbook.event_save(_name := 'test',_description := 'test', _active := false );
+-- select * from handbook.event_get();
+-- select * from handbook.event_get_id(_id := 1);
+-- select * from handbook.event_check_id(_id := 1);
+-- select * from handbook.event_check_name(_name := 'test');
+-- select * from handbook.event_delete_id(_id := 1);
+-- select * from handbook.event_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
 /** Start Fucntion */

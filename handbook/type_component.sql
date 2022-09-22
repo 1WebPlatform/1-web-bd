@@ -128,11 +128,11 @@ END;
 $function$;
 
 /** Start Fucntion */
-select * from handbook.type_component_save(_name := 'test',_description := 'test', _active := false );
-select * from handbook.type_component_get();
-select * from handbook.type_component_get_id(_id := 1);
-select * from handbook.type_component_check_id(_id := 1);
-select * from handbook.type_component_check_name(_name := 'test');
-select * from handbook.type_component_delete_id(_id := 1);
-select * from handbook.type_component_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
+-- select * from handbook.type_component_save(_name := 'test',_description := 'test', _active := false );
+-- select * from handbook.type_component_get();
+-- select * from handbook.type_component_get_id(_id := 1);
+-- select * from handbook.type_component_check_id(_id := 1);
+-- select * from handbook.type_component_check_name(_name := 'test');
+-- select * from handbook.type_component_delete_id(_id := 1);
+-- select * from handbook.type_component_update_id(_id := 1,_name := 'test',_description := 'test', _active := false ); 
 /** Start Fucntion */

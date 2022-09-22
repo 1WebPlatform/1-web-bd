@@ -15,6 +15,7 @@ COMMENT ON COLUMN tec.error.status IS 'Код статуса ошибки';
 
 /** Fucntion */
 /** Fucntion GET  */
+/**УСТАРЕЛО **/
 CREATE OR REPLACE FUNCTION tec.error_get_id(_id int)
 	RETURNS SETOF "tec"."error"
 	LANGUAGE plpgsql
@@ -31,7 +32,7 @@ AS $function$
 		return query select * from tec.error where id = any(_ids);
 	END;
 $function$;
-
+/**УСТАРЕЛО **/
 
 CREATE OR REPLACE FUNCTION tec.error_get_id(_id integer, out error_ json)
  LANGUAGE plpgsql

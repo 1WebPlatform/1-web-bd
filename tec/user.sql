@@ -101,7 +101,7 @@ AS $function$
         IF (select * from tec.user_check_email(_email)) <> true then
             INSERT INTO tec.user
                 ("name", "patronymic", "surname", "email", "password")
-                VALUES (_name, _patronymic,_surname, _email, lib.crypt(_password::TEXT, lib.gen_salt('bf'::TEXT)));
+                VALUES (_name, _patronymic,_surname, _email, lib.crypt(_password::TEXT, lib.gen_salt('bf'::TEXT)))
                 RETURNING id INTO id_;
             INSERT INTO tec.right_roles ("id_user", "id_roles")
                 VALUES (_id, 2);
@@ -143,10 +143,10 @@ $function$;
 /** Fucntion */
 
 /** Start Fucntion */
-select * from tec.user_save('1', '1','1', '1', '4');
-select * from tec.user_update_id(1, '1', '1','1', '4'); 
-select * from tec.user_get_id(1);
-select * from tec.user_get(1,1);
-select * from tec.user_check_id(1);
-select * from tec.user_check_email('1');
+-- select * from tec.user_save('1', '1','1', '1', '4');
+-- select * from tec.user_update_id(1, '1', '1','1', '4'); 
+-- select * from tec.user_get_id(1);
+-- select * from tec.user_get(1,1);
+-- select * from tec.user_check_id(1);
+-- select * from tec.user_check_email('1');
 /** Start Fucntion */

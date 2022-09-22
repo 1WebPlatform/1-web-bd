@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION config.proekt_screen_save(
     _id_proekt int,
     _id_screen int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -26,11 +26,11 @@ declare
         check_proekt := (select * from config.proekt_check_id(_id_proekt));
         check_screen := (select * from config.screen_check_id(_id_screen));
         if check_proekt <> true and check_screen <> true then
-            select * into error  from tec.error_get_id(24);
+            select * into error_  from tec.error_get_id(24);
         elseif check_proekt <> true then 
-            select * into error  from tec.error_get_id(21);
+            select * into error_  from tec.error_get_id(21);
         elseif check_screen <> true then 
-            select * into error  from tec.error_get_id(22);
+            select * into error_  from tec.error_get_id(22);
         else 
             INSERT INTO  config.proekt_screen
             (id_proekt,id_screen) 
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.proekt_screen_delete(
     _id int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -97,7 +97,7 @@ AS $function$
 	    if(select * from config.proekt_screen_check_id(_id)) then
 	   		DELETE FROM config.proekt_screen  where id = _id RETURNING id INTO id_; 	
 	    else
-	    	select * into error  from tec.error_get_id(23);   
+	    	select * into error_  from tec.error_get_id(23);   
 	    end if;
      end;
 $function$;
@@ -109,7 +109,7 @@ CREATE OR REPLACE FUNCTION config.proekt_screen_update_id(
     _id_proekt integer, 
     _id_screen integer,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -122,11 +122,11 @@ declare
 		    check_proekt := (select * from config.proekt_check_id(_id_proekt));
 	        check_screen := (select * from config.screen_check_id(_id_screen));
 	        if check_proekt <> true and check_screen <> true then
-	            select * into error  from tec.error_get_id(24);
+	            select * into error_  from tec.error_get_id(24);
 	        elseif check_proekt <> true then 
-	            select * into error  from tec.error_get_id(21);
+	            select * into error_  from tec.error_get_id(21);
 	        elseif check_screen <> true then 
-	            select * into error  from tec.error_get_id(22);
+	            select * into error_  from tec.error_get_id(22);
 		   	else
 		   		UPDATE config.proekt_screen
 	            SET 
@@ -135,7 +135,7 @@ declare
 	            where id = _id RETURNING id INTO id_;
 	        end if;
 	    else
-		   	select * into error  from tec.error_get_id(23);   
+		   	select * into error_  from tec.error_get_id(23);   
 	    end if;
      end;
 $function$;

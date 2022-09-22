@@ -93,7 +93,7 @@ CREATE OR REPLACE FUNCTION tec.user_save(
     _email varchar,
     _password varchar,
     OUT id_ int,
-    OUT error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -106,7 +106,7 @@ AS $function$
             INSERT INTO tec.right_roles ("id_user", "id_roles")
                 VALUES (_id, 2);
         ELSE 
-            select * into error from tec.error_get_id(7);		
+            select * into error_ from tec.error_get_id(7);		
         END IF;	
     END;
 $function$;
@@ -120,7 +120,7 @@ CREATE OR REPLACE FUNCTION tec.user_update_id(
     _surname varchar,
     _password varchar,
     OUT id_ int,
-    OUT error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -135,7 +135,7 @@ AS $function$
                 where id = _id 
                 RETURNING id INTO id_;
         ELSE 
-            select * into error from tec.error_get_id(8);		
+            select * into error_ from tec.error_get_id(8);		
         END IF;	
     END;
 $function$;

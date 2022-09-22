@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION config.screen_component_save(
     _id_screen int,
     _id_component int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -26,11 +26,11 @@ declare
         check_screen := (select * from config.screen_check_id(_id_screen));
         check_component := (select * from config.component_check_id(_id_component));
         if check_screen <> true and check_component <> true then
-            select * into error  from tec.error_get_id(28);
+            select * into error_  from tec.error_get_id(28);
         elseif check_screen <> true then 
-            select * into error  from tec.error_get_id(21);
+            select * into error_  from tec.error_get_id(21);
         elseif check_component <> true then 
-            select * into error  from tec.error_get_id(25);
+            select * into error_  from tec.error_get_id(25);
         else 
             INSERT INTO  config.screen_component
             (id_screen,id_component) 
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.screen_component_delete(
     _id int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -97,7 +97,7 @@ AS $function$
 	    if(select * from config.screen_component_check_id(_id)) then
 	   		DELETE FROM config.screen_component  where id = _id RETURNING id INTO id_; 	
 	    else
-	    	select * into error  from tec.error_get_id(27);   
+	    	select * into error_  from tec.error_get_id(27);   
 	    end if;
      end;
 $function$;
@@ -109,7 +109,7 @@ CREATE OR REPLACE FUNCTION config.screen_component_update_id(
     _id_screen integer, 
     _id_component integer,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -122,11 +122,11 @@ declare
 		    check_screen := (select * from config.screen_check_id(_id_screen));
 	        check_component := (select * from config.component_check_id(_id_component));
 	        if check_screen <> true and check_component <> true then
-	            select * into error  from tec.error_get_id(28);
+	            select * into error_  from tec.error_get_id(28);
 	        elseif check_screen <> true then 
-	            select * into error  from tec.error_get_id(21);
+	            select * into error_  from tec.error_get_id(21);
 	        elseif check_component <> true then 
-	            select * into error  from tec.error_get_id(25);
+	            select * into error_  from tec.error_get_id(25);
 		   	else
 		   		UPDATE config.screen_component
 	            SET 
@@ -135,7 +135,7 @@ declare
 	            where id = _id RETURNING id INTO id_;
 	        end if;
 	    else
-		   	select * into error  from tec.error_get_id(27);   
+		   	select * into error_  from tec.error_get_id(27);   
 	    end if;
      end;
 $function$;

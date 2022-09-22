@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION tec.roles_user_save(
     _id_user int,
     _id_roles int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -26,11 +26,11 @@ declare
         check_user := (select * from tec.user_check_id(_id_user));
         check_roles := (select * from tec.roles_check_id(_id_roles));
         if check_user <> true and check_roles <> true then
-            select * into error  from tec.error_get_id(16);
+            select * into error_  from tec.error_get_id(16);
         elseif check_user <> true then 
-            select * into error  from tec.error_get_id(8);
+            select * into error_  from tec.error_get_id(8);
         elseif check_roles <> true then 
-            select * into error  from tec.error_get_id(12);
+            select * into error_  from tec.error_get_id(12);
         else 
             INSERT INTO  tec.roles_user
             (id_user,id_roles) 
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION tec.roles_user_delete(
     _id int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -97,7 +97,7 @@ AS $function$
 	    if(select * from tec.roles_user_check_id(_id)) then
 	   		DELETE FROM tec.roles_user  where id = _id RETURNING id INTO id_; 	
 	    else
-	    	select * into error  from tec.error_get_id(15);   
+	    	select * into error_  from tec.error_get_id(15);   
 	    end if;
      end;
 $function$;
@@ -109,7 +109,7 @@ CREATE OR REPLACE FUNCTION tec.roles_user_update_id(
     _id_user integer, 
     _id_roles integer,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -122,11 +122,11 @@ declare
 		    check_user := (select * from tec.user_check_id(_id_user));
 	        check_roles := (select * from tec.roles_check_id(_id_roles));
 	        if check_user <> true and check_roles <> true then
-	            select * into error  from tec.error_get_id(16);
+	            select * into error_  from tec.error_get_id(16);
 	        elseif check_user <> true then 
-	            select * into error  from tec.error_get_id(8);
+	            select * into error_  from tec.error_get_id(8);
 	        elseif check_roles <> true then 
-	            select * into error  from tec.error_get_id(12);
+	            select * into error_  from tec.error_get_id(12);
 		   	else
 		   		UPDATE tec.roles_user
 	            SET 
@@ -135,7 +135,7 @@ declare
 	            where id = _id RETURNING id INTO id_;
 	        end if;
 	    else
-		   	select * into error  from tec.error_get_id(15);   
+		   	select * into error_  from tec.error_get_id(15);   
 	    end if;
      end;
 $function$;

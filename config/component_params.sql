@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION config.component_params_save(
     _id_component int,
     _id_params int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -26,11 +26,11 @@ declare
         check_component := (select * from handbook.type_component_check_id(_id_component));
         check_params := (select * from config.params_check_id(_id_params));
         if check_component <> true and check_params <> true then
-            select * into error  from tec.error_get_id(32);
+            select * into error_  from tec.error_get_id(32);
         elseif check_component <> true then 
-            select * into error  from tec.error_get_id(26);
+            select * into error_  from tec.error_get_id(26);
         elseif check_params <> true then 
-            select * into error  from tec.error_get_id(30);
+            select * into error_  from tec.error_get_id(30);
         else 
             INSERT INTO  config.component_params
             (id_component,id_params) 
@@ -89,7 +89,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.component_params_delete(
     _id int,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -97,7 +97,7 @@ AS $function$
 	    if(select * from config.component_params_check_id(_id)) then
 	   		DELETE FROM config.component_params  where id = _id RETURNING id INTO id_; 	
 	    else
-	    	select * into error  from tec.error_get_id(31);   
+	    	select * into error_  from tec.error_get_id(31);   
 	    end if;
      end;
 $function$;
@@ -110,7 +110,7 @@ CREATE OR REPLACE FUNCTION config.component_params_update_id(
     _id_component integer, 
     _id_params integer,
     out id_ int,
-    out error tec.error
+    out error_ tec.error
 )
 LANGUAGE plpgsql
 AS $function$
@@ -123,11 +123,11 @@ declare
             check_component := (select * from handbook.type_component_check_id(_id_component));
 	        check_params := (select * from config.params_check_id(_id_params));
 	        if check_component <> true and check_params <> true then
-	            select * into error  from tec.error_get_id(32);
+	            select * into error_  from tec.error_get_id(32);
 	        elseif check_component <> true then 
-	            select * into error  from tec.error_get_id(26);
+	            select * into error_  from tec.error_get_id(26);
 	        elseif check_params <> true then 
-	            select * into error  from tec.error_get_id(30);
+	            select * into error_  from tec.error_get_id(30);
 		   	else
 		   		UPDATE config.component_params
 	            SET 
@@ -136,7 +136,7 @@ declare
 	            where id = _id RETURNING id INTO id_;
 	        end if;
 	    else
-		   	select * into error  from tec.error_get_id(31);   
+		   	select * into error_  from tec.error_get_id(31);   
 	    end if;
      end;
 $function$;

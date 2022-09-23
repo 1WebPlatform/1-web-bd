@@ -12,3 +12,10 @@ INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_check_id', 
 INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_save', 'tec', 5);
 INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_update_id', 'tec', 5);
 INSERT INTO tec.right_fun ("name", "schema", id_right) VALUES('roles_delete_id', 'tec', 6);
+
+INSERT INTO tec.right_fun (name, "schema", id_right) VALUES('proekt_get', 'config', 14);
+INSERT INTO tec.right_fun (name, "schema", id_right) VALUES('proekt_get_id', 'config', 14);
+INSERT INTO tec.right_fun (name, "schema", id_right) VALUES('proekt_check_id', 'config', 14);
+INSERT INTO tec.right_fun (name, "schema", id_right) VALUES('proekt_save', 'config', 14);
+INSERT INTO tec.right_fun (name, "schema", id_right) VALUES('proekt_delete', 'config', 14);
+INSERT INTO tec.right_fun (name, "schema", id_right) VALUES('proekt_update', 'config', 14);

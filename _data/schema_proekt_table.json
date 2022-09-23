@@ -1,0 +1,89 @@
+{
+    "id": {
+        "gn":1,
+        "nc": "id",
+        "w": 40,
+        "visible": false,
+        "displayed": false,
+        "sort": true,
+        "title":true,
+        "filter": true,
+        "type": "number"
+    },
+    "name": {
+        "gn":2,
+        "nc": "name",
+        "w": 40,
+        "visible": true,
+        "displayed": true,
+        "sort": true,
+        "title":true,
+        "filter": true,
+        "type": "string"
+    },
+    "description": {
+        "gn":3,
+        "nc": "description",
+        "w": 40,
+        "visible": true,
+        "displayed": true,
+        "sort": true,
+        "title":true,
+        "filter": true,
+        "type": "string"
+    },
+    "icons": {
+        "gn":4,
+        "nc": "icons",
+        "w": 40,
+        "visible": true,
+        "displayed": true,
+        "sort": true,
+        "title":true,
+        "filter": true,
+        "type": "string"
+    },
+    "active": {
+        "gn":5,
+        "nc": "active",
+        "w": 40,
+        "visible": true,
+        "displayed": true,
+        "sort": true,
+        "title":true,
+        "filter": true,
+        "type": "boolean"
+    },
+    "date_create": {
+        "gn":6,
+        "nc": "date_create",
+        "w": 40,
+        "visible": true,
+        "displayed": true,
+        "sort": true,
+        "title":true,
+        "filter": true,
+        "type": "date-time"
+    },
+    "delete":{
+        "gn": 7,
+        "nc": "delete",
+        "type": "button",
+        "id": 2,
+        "w": 40
+    },
+    "update":{
+        "gn": 8,
+        "nc": "update",
+        "type": "button",
+        "id": 3,
+        "w": 40
+    },
+    "get_screen":{
+        "gn": 9,
+        "nc": "get_screen",
+        "type": "button",
+        "id": 4,
+        "w": 40
+    }
+}

@@ -99,7 +99,7 @@ from  tec."token" t
 left join tec."user" u ON u.id  = t.id_user 
 left join tec."roles_user" r_u on r_u.id_user  = u.id 
 left join tec."roles" r on r.id  = r_u.id_roles 
-left join tec."right_roles" r_r on r_r.id  = r.id 
+left join tec."right_roles" r_r on r_r.id_roles  = r.id 
 left join tec."right" rig on rig.id  = r_r.id_right 
 where t.value = _token
 group by u.id, t.id, t.value, t.active, t.lifetime;

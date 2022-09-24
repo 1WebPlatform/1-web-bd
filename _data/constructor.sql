@@ -11,5 +11,11 @@ INSERT INTO config.component ("name", description, css, params, "schema", "event
 INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Контейнер', 'Контейнер главный экран "Проекты"', NULL, NULL, NULL, NULL, NULL, 4, NULL);
 
 
+INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 1);
+INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 2);
+INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 3);
+INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 4);
+INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 5);
+
 
 /** config.proekt */

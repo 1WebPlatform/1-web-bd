@@ -1,0 +1,11 @@
+{
+    "create":[
+        {
+            "fun":"loader_table_data",
+            "params":{
+                "name": "proekt_get",
+                "schema": "config"
+            }
+        }
+    ]
+}

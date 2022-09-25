@@ -148,12 +148,9 @@ $function$;
 /** Fucntion CHECK  */
 
 /** Fucntion authentication  */
-create or replace function tec.token_authentication(
-	_token text,
-	out user_ tec.user_dataset,
-	OUT error_  json
-	)
- 	LANGUAGE plpgsql
+CREATE OR REPLACE FUNCTION tec.token_authentication(_token text, OUT user_ tec.user_dataset, OUT error_ json)
+ RETURNS record
+ LANGUAGE plpgsql
 AS $function$
 	begin
 	 select * from tec.token_get_id(_token) into user_;
@@ -164,13 +161,14 @@ AS $function$
 		((user_.user) ->> 'active')::boolean,
 		((user_.user) ->> 'verified')::boolean
 	);
-	if error_.id IS NOT NULL then
+	if error_ IS NOT NULL then
 		user_ := null;
 	else
 		PERFORM tec.token_update_time( ((user_.token) ->> 'id')::int);
 	end if;
 	END
-$function$;
+$function$
+;
  
 
  

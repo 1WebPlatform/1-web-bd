@@ -18,8 +18,4 @@ declare
 	 	select * into error_  from tec.error_get_id(id_error);
 	 end if;
  	end;
- $function$;
- 
-
-
- 
+ $function$

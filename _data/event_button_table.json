@@ -4,8 +4,8 @@
         {
             "fun": "api_procedures",
             "params": {
-                "name": "proekt_screen_delete",
-                "schema": "config",
+                "name": {"value": "proekt_screen_delete"},
+                "schema": {"value":"config"},
                 "body":[
                     {
                         "type":"context",

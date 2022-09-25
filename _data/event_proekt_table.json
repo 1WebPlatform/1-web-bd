@@ -3,8 +3,8 @@
         {
             "fun":"loader_table_data",
             "params":{
-                "name": "proekt_get",
-                "schema": "config"
+                "name": {"value": "proekt_get"},
+                "schema": {"value": "config"}
             }
         }
     ]

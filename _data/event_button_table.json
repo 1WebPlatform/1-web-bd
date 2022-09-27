@@ -6,13 +6,13 @@
             "params": {
                 "name": {"value": "proekt_screen_delete"},
                 "schema": {"value":"config"},
-                "body":[
-                    {
+                "body":{
+                    "_id":{
                         "type":"context",
                         "nc": "id",
-                        "name": "_id"
+                        "id": 2
                     }
-                ]
+                }                
             }
         }
     ]

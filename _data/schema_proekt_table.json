@@ -63,7 +63,7 @@
         "gn":6,
         "nc": "date_create",
         "name": "Дата создания проекта",
-        "w": 40,
+        "w": 180,
         "visible": true,
         "displayed": true,
         "sort": true,
@@ -77,7 +77,8 @@
         "name": "Удалить проект",
         "type": "button",
         "id": 2,
-        "w": 40
+        "w": 120,
+        "visible": true
     },
     "update":{
         "gn": 8,
@@ -85,7 +86,8 @@
         "type": "button",
         "name": "Изменить проект",
         "id": 3,
-        "w": 40
+        "w": 120,
+        "visible": true
     },
     "get_screen":{
         "gn": 9,
@@ -93,6 +95,7 @@
         "name": "Открыть скрины проекта",
         "type": "button",
         "id": 4,
-        "w": 40
+        "w": 180,
+        "visible": true
     }
 }

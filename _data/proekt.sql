@@ -1,0 +1,4 @@
+INSERT INTO config.proekt ("name", description, icons, active, date_create) VALUES('Конструктор', 'Конструктор проект с помощью которого будут разрабатываться другие проекты и разрабатывать конфиги для отрисовки', NULL, true, '2022-09-23 19:41:01.438');
+INSERT INTO config.proekt ("name", description, icons, active, date_create) VALUES('Админская часть', 'Админская часть проект, для работы с пользователями, правами, ролями и тд (схема tec)', NULL, true, '2022-10-05 16:52:22.898');
+INSERT INTO config.proekt ("name", description, icons, active, date_create) VALUES('Тестовый проект', 'Тестовый проект, для эксперементов', NULL, true, '2022-10-05 16:52:22.898');
+INSERT INTO config.proekt ("name", description, icons, active, date_create) VALUES('Справочники', 'Проект, представляющий собой список всех справочников(схема handbook)', NULL, true, '2022-10-05 16:57:36.539');

@@ -33,3 +33,4 @@ INSERT INTO tec.error ("name", description, status) VALUES('Ошибка уни�
 INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанный id типа переменной не существует', '404');
 INSERT INTO tec.error ("name", description, status) VALUES('Ошибка уникальности', 'Указанное имя калбэк функции уже занято', '400');
 INSERT INTO tec.error ("name", description, status) VALUES('Ошибка уникальности', 'Указанное id калбэк функции не существует', '404');
+INSERT INTO tec.error ("name", description, status) VALUES('Запись не найдена', 'Указанное id шаблона стилей не существует', '400');

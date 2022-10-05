@@ -1,6 +1,5 @@
 CREATE TABLE config."css_tempale"(
    "id" int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
-   "select" varchar NOT NULL,
    "css" text NULL,
    "id_type" int NOT NULL,
    CONSTRAINT css_tempale_pk PRIMARY KEY (id),
@@ -44,7 +43,6 @@ AS $function$
 $function$;
 
 CREATE OR REPLACE FUNCTION config.css_tempale_save(
-   _select varchar,
    _css text,
    _id_type int,
    out id_ int, 
@@ -58,8 +56,8 @@ AS $function$
            return;
        end if;
        INSERT INTO config.css_tempale
-           ("select","css","id_type")
-           VALUES  (_select,_css,_id_type)
+           ("css","id_type")
+           VALUES  (_css,_id_type)
            RETURNING id INTO id_; 
    END;
 $function$;
@@ -82,7 +80,6 @@ $function$;
 
 CREATE OR REPLACE FUNCTION config.css_tempale_update(
    _id int, 
-   _select varchar,
    _css text,
    _id_type int,
    out id_ int, 
@@ -100,7 +97,6 @@ AS $function$
          return;
      end if;
        UPDATE  config.css_tempale SET
-        "select" = _select,
         "css" = _css,
         "id_type" = _id_type
        RETURNING id INTO id_; 

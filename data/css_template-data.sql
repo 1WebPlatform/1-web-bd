@@ -1,0 +1,1 @@
+INSERT INTO config.css_tempale (css, id_type) VALUES('[{"select":".table-header","css":{"display":"flex"}},{"select":".table-tr","css":{"display":"flex"}}]', 1);

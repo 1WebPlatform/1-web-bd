@@ -49,6 +49,18 @@ AS $function$
    END;
 $function$;
 
+
+CREATE OR REPLACE FUNCTION config.component_select_css_get_id(_id integer)
+ RETURNS table (css text)
+ LANGUAGE plpgsql
+AS $function$
+   BEGIN
+       return query select c.css from config.component c  where id = _id;  
+   END;
+$function$;
+
+
+
 CREATE OR REPLACE FUNCTION config.component_save(
    _name varchar,
    _description text,

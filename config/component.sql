@@ -51,11 +51,16 @@ $function$;
 
 
 CREATE OR REPLACE FUNCTION config.component_select_css_get_id(_id integer)
- RETURNS table (css text)
+ RETURNS table (id int,name varchar, css text)
  LANGUAGE plpgsql
 AS $function$
    BEGIN
-       return query select c.css from config.component c  where id = _id;  
+      return query 
+         select c.id, t_c."name", c.css
+         from config.component c  
+         left join handbook.type_component t_c on t_c.id = c.id_type  
+         where c.id = _id;  
+  
    END;
 $function$;
 

@@ -27,7 +27,11 @@ RETURNS SETOF config.css_tempale
 LANGUAGE plpgsql
 AS $function$
    BEGIN
-       return query select * from config.css_tempale where id = _id;  
+      return query 
+         select c_t.id, t_c."name", c_t.css  
+         from config.css_tempale  c_t
+         left join handbook.type_component t_c on t_c.id = c_t.id_type
+         where c_t.id = _id;
    END;
 $function$;
 

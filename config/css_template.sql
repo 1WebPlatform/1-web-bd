@@ -23,7 +23,7 @@ $function$;
 CREATE OR REPLACE FUNCTION config.css_tempale_get_id(
    _id int
 )
-RETURNS SETOF config.css_tempale
+RETURNS TABLE(id int, name varchar, css text)
 LANGUAGE plpgsql
 AS $function$
    BEGIN

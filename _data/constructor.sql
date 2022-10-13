@@ -11,6 +11,7 @@ INSERT INTO config.component ("name", description, css, params, "schema", "event
 INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Изменить', 'Кнопка изменить проект', NULL, '{"title": "Редактировать проект", "icons":"editor.svg"}', NULL, NULL, NULL, 2, 1);
 INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Перейди на скрин', 'Кнопка  перехода на скрин "скрины проекта"', NULL, '{"title": "Открыть скрин ''Скрины проекта'' ", "icons":"door-leave.svg"}', NULL, NULL, NULL, 2, 1);
 INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Контейнер', 'Контейнер главный экран "Проекты"', NULL, NULL, NULL, NULL, NULL, 4, NULL);
+INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Сообщение', 'Сообщение вопрос при нажатия кнопку удаления', NULL, '{"name": "Удаление проекта", "text": "Вы уверены что хотите удалить проект?" ', NULL, NULL, NULL, 6, NULL);
 
 
 
@@ -20,6 +21,7 @@ INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 2);
 INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 3);
 INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 4);
 INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 5);
+INSERT INTO config.screen_component (id_screen, id_component) VALUES(1, 6);
     
 
 /** config.proekt */

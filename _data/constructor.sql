@@ -11,7 +11,7 @@ INSERT INTO config.component ("name", description, css, params, "schema", "event
 INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Изменить', 'Кнопка изменить проект', NULL, '{"title": "Редактировать проект", "icons":"editor.svg"}', NULL, NULL, NULL, 2, 1);
 INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Перейди на скрин', 'Кнопка  перехода на скрин "скрины проекта"', NULL, '{"title": "Открыть скрин ''Скрины проекта'' ", "icons":"door-leave.svg"}', NULL, NULL, NULL, 2, 1);
 INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Контейнер', 'Контейнер главный экран "Проекты"', NULL, NULL, NULL, NULL, NULL, 4, NULL);
-INSERT INTO config.component ("name", description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Сообщение', 'Сообщение вопрос при нажатия кнопку удаления', NULL, '{"name": "Удаление проекта", "text": "Вы уверены что хотите удалить проект?" ', NULL, '{"click_ok":[{"fun":"api_procedures","params":{"name":{"value":"proekt_delete"},"schema":{"value":"config"},"body":[{"_id":{"type":"context","nc":"id","id":2}}]}}]}', NULL, 6, NULL);
+INSERT INTO config.component (name, description, css, params, "schema", "event", id_right, id_type, id_parent) VALUES('Сообщение', 'Сообщение вопрос при нажатия кнопку удаления', NULL, '{"name": "Удаление проекта", "text": "Вы уверены что хотите удалить проект?"} ', NULL, '{"click_ok":[{"fun":"api_procedures","params":{"name":{"value":"proekt_delete"},"schema":{"value":"config"},"body":[{"_id":{"type":"context","nc":"id","id":2}}]}}]}', NULL, 6, NULL);
 
 
 
